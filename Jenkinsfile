@@ -1,16 +1,16 @@
 pipeline {
     agent {
-        kubernetes {
+      kubernetes {
         yaml """
-    apiVersion: v1
-    kind: Pod
-    spec:
-    containers:
-    - name: jnlp
-        image: hieunguyen2k/jenkins-agent-docker:latest
-        tty: true
-    """
-        }
+          apiVersion: v1
+          kind: Pod
+          spec:
+            containers:
+            - name: jnlp
+              image: hieunguyen2k/jenkins-agent-docker:latest
+              tty: true
+        """
+      }
     }
     tools {
         maven 'MAVEN3.9'
