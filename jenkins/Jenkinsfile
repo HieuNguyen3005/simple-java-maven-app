@@ -1,16 +1,8 @@
 pipeline {
-    agent {
-        kubernetes {
-        yaml """
-    apiVersion: v1
-    kind: Pod
-    spec:
-    containers:
-    - name: jnlp
-        image: hieunguyen2k/jenkins-agent-docker:latest
-        tty: true
-    """
-        }
+  agent {
+    kubernetes {
+      label 'docker'
+    }
     }
     tools {
         maven 'MAVEN3.9'
@@ -24,6 +16,11 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+        stage('Verify Docker') {
+            steps {
+                sh 'docker version'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -51,3 +48,4 @@ pipeline {
         }
     }
 }
+
