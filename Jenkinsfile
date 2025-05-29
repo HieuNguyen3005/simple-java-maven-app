@@ -1,7 +1,16 @@
 pipeline {
     agent {
-    kubernetes {
-      label 'docker'
+        kubernetes {
+        yaml """
+    apiVersion: v1
+    kind: Pod
+    spec:
+    containers:
+    - name: jnlp
+        image: yourdockerhub/jenkins-agent-docker:latest
+        tty: true
+    """
+        }
     }
     }
     tools {
@@ -49,3 +58,16 @@ pipeline {
     }
 }
 
+    agent {
+        kubernetes {
+        yaml """
+    apiVersion: v1
+    kind: Pod
+    spec:
+    containers:
+    - name: jnlp
+        image: yourdockerhub/jenkins-agent-docker:latest
+        tty: true
+    """
+        }
+    }
