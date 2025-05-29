@@ -7,7 +7,7 @@ pipeline {
     spec:
     containers:
     - name: jnlp
-        image: yourdockerhub/jenkins-agent-docker:latest
+        image: hieunguyen2k/jenkins-agent-docker:latest
         tty: true
     """
         }
