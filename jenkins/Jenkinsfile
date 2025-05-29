@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    tools {
+        maven 'MAVEN3.9'
+    }
+    environment {
+        IMAGE_NAME = 'hieunguyen3005/my-java-app'
+        VERSION = "1.0.${BUILD_NUMBER}"
+        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
+    }
     options {
         skipStagesAfterUnstable()
     }
